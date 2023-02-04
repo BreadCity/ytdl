@@ -4,6 +4,7 @@ import ytdl, { validateURL } from 'ytdl-core';
 import { createWriteStream, unlinkSync } from 'fs';
 import { join } from 'path';
 import { exec } from 'child_process';
+import ffmpeg from 'ffmpeg-static'
 Logger.postGuillemet=true;
 (async()=>{
   const logger = new Logger()
@@ -80,6 +81,7 @@ Logger.postGuillemet=true;
       status.done(false,'Error Downloading',err as any)
     })
   } else {
+    if (!ffmpeg) return status.done(false,'ffmpeg is not installed!','Please install it from https://ffmpeg.org/')
     status.updateStatus('Downloading Video Track...')
     const videoTrackFile = join(process.cwd(),'tmp.video-track.'+safeTitle+'.'+highestvideo.container);
     const audioTrackFile = join(process.cwd(),'tmp.audio-track.'+safeTitle+'.'+highestaudio.container);
@@ -104,7 +106,7 @@ Logger.postGuillemet=true;
         reject(err)
       })
     })
-    const cmd = `ffmpeg -y -i "${videoTrackFile}" -i "${audioTrackFile}" -c:v copy -map 0:v:0 -map 1:a:0 "${filename.replace(/\\/gui,'\\\\').replace(/"/gui,'\\"')}"`
+    const cmd = `${ffmpeg} -y -i "${videoTrackFile}" -i "${audioTrackFile}" -c:v copy -map 0:v:0 -map 1:a:0 "${filename.replace(/\\/gui,'\\\\').replace(/"/gui,'\\"')}"`
     status.updateStatus('Merging...')
     exec(cmd,()=>{
       status.updateStatus('Removing Leftover Files...')

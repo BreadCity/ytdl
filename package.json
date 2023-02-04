@@ -1,6 +1,6 @@
 {
   "name": "@exponentialworkload/ytdl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Interactive Command-Line Utility for ytdl-core",
   "main": "dist/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@exponentialworkload/logger": "1.0.10",
-    "ffmpeg-bin": "^0.0.1",
+    "ffmpeg-static": "^5.1.0",
     "get-cursor-position": "^2.0.0",
     "prompts": "^2.4.2",
     "ytdl-core": "^4.11.2"
