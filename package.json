@@ -29,5 +29,10 @@
   "bin": {
     "ytdl-cli": "dist/index.js",
     "ytdc": "dist/index.js"
-  }
+  },
+  "repository": {
+    "url": "https://github.com/BreadCity/ytdl.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/BreadCity/ytdl#readme"
 }
