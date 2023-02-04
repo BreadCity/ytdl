@@ -13,6 +13,7 @@ A simple Youtube Downloading Utility using [ytdl-core](https://npm.im/ytdl-core)
 `npm i -g @exponentialworkload/ytdl`
 
 ## usage
+0. install (see above)
 1. run `ytdl-cli` or `ytdc`
 2. enter url
 3. select `Best Merged` (or `Best Audio/Best Video/Auto` for well, exactly what that says)
