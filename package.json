@@ -1,6 +1,6 @@
 {
   "name": "@exponentialworkload/ytdl",
-  "version": "1.0.2-readme",
+  "version": "1.0.3",
   "description": "Interactive Command-Line Utility for ytdl-core",
   "main": "dist/index.js",
   "scripts": {

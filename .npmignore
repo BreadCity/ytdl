@@ -3,3 +3,6 @@ src
 .gitignore
 rollup.config.js
 tsconfig.json
+*.mp4
+*.webm
+*.mp3
