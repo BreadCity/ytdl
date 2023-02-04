@@ -108,12 +108,18 @@ Logger.postGuillemet=true;
     })
     const cmd = `${ffmpeg} -y -i "${videoTrackFile}" -i "${audioTrackFile}" -c:v copy -map 0:v:0 -map 1:a:0 "${filename.replace(/\\/gui,'\\\\').replace(/"/gui,'\\"')}"`
     status.updateStatus('Merging...')
-    exec(cmd,()=>{
-      status.updateStatus('Removing Leftover Files...')
-      unlinkSync(videoTrackFile)
-      unlinkSync(audioTrackFile)
-      status.updateStatus('Downloaded & Merged Successfully!','Your output is at '+filename)
-      status.done(true)
+    await new Promise((resolve,reject)=>{
+      exec(cmd, {
+        cwd: process.cwd()
+      },(err)=>{
+        if (err) return reject(err);
+        status.updateStatus('Removing Leftover Files...')
+        unlinkSync(videoTrackFile)
+        unlinkSync(audioTrackFile)
+        status.updateStatus('Downloaded & Merged Successfully!','Your output is at '+filename)
+        status.done(true)
+        resolve(void 0)
+      })
     })
   }
 })()
